@@ -13,15 +13,13 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     json_body: SendMessage,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
     url = "{}/api/v1/messages/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    if not isinstance(authorization, Unset):
-        headers["Authorization"] = authorization
+        
 
     json_json_body = json_body.to_dict()
 
@@ -58,7 +56,6 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: SendMessage,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Response[Any]:
     """Send a message
 
@@ -79,7 +76,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -94,7 +91,6 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: SendMessage,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Response[Any]:
     """Send a message
 
@@ -115,7 +111,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:

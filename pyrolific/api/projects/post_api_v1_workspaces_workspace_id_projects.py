@@ -15,14 +15,14 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     json_body: CreateProject,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/workspaces/{workspace_id}/projects/".format(client.base_url, workspace_id=workspace_id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     json_json_body = json_body.to_dict()
 
@@ -62,7 +62,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: CreateProject,
-    authorization: str,
+    
 ) -> Response[Project]:
     """Create a project
 
@@ -71,7 +71,7 @@ def sync_detailed(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
         json_body (CreateProject):
 
     Raises:
@@ -86,7 +86,7 @@ def sync_detailed(
         workspace_id=workspace_id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -102,7 +102,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: CreateProject,
-    authorization: str,
+    
 ) -> Optional[Project]:
     """Create a project
 
@@ -111,7 +111,7 @@ def sync(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
         json_body (CreateProject):
 
     Raises:
@@ -126,7 +126,7 @@ def sync(
         workspace_id=workspace_id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -135,7 +135,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: CreateProject,
-    authorization: str,
+    
 ) -> Response[Project]:
     """Create a project
 
@@ -144,7 +144,7 @@ async def asyncio_detailed(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
         json_body (CreateProject):
 
     Raises:
@@ -159,7 +159,7 @@ async def asyncio_detailed(
         workspace_id=workspace_id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -173,7 +173,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: CreateProject,
-    authorization: str,
+    
 ) -> Optional[Project]:
     """Create a project
 
@@ -182,7 +182,7 @@ async def asyncio(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
         json_body (CreateProject):
 
     Raises:
@@ -198,6 +198,6 @@ async def asyncio(
             workspace_id=workspace_id,
             client=client,
             json_body=json_body,
-            authorization=authorization,
+            
         )
     ).parsed

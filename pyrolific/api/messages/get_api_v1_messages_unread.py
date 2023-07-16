@@ -12,14 +12,14 @@ from ...types import Response
 def _get_kwargs(
     *,
     client: AuthenticatedClient,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/messages/unread/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     return {
         "method": "get",
@@ -54,7 +54,7 @@ def _build_response(*, client: Client, response: httpx.Response) -> Response[Mes
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    authorization: str,
+    
 ) -> Response[Messages]:
     """Retrieve unread messages
 
@@ -63,7 +63,7 @@ def sync_detailed(
     It does not mark those messages as read.
 
     Args:
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -75,7 +75,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         client=client,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -89,7 +89,7 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    authorization: str,
+    
 ) -> Optional[Messages]:
     """Retrieve unread messages
 
@@ -98,7 +98,7 @@ def sync(
     It does not mark those messages as read.
 
     Args:
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -110,14 +110,14 @@ def sync(
 
     return sync_detailed(
         client=client,
-        authorization=authorization,
+        
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    authorization: str,
+    
 ) -> Response[Messages]:
     """Retrieve unread messages
 
@@ -126,7 +126,7 @@ async def asyncio_detailed(
     It does not mark those messages as read.
 
     Args:
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -138,7 +138,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         client=client,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -150,7 +150,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    authorization: str,
+    
 ) -> Optional[Messages]:
     """Retrieve unread messages
 
@@ -159,7 +159,7 @@ async def asyncio(
     It does not mark those messages as read.
 
     Args:
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -172,6 +172,6 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
-            authorization=authorization,
+            
         )
     ).parsed

@@ -14,15 +14,14 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     json_body: RequirementsCountRequest,
-    authorization: Union[Unset, str] = UNSET,
+    authorization: Union[Unset, str] = UNSET
 ) -> Dict[str, Any]:
     url = "{}/api/v1/eligibility-count/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    if not isinstance(authorization, Unset):
-        headers["Authorization"] = authorization
+        
 
     json_json_body = json_body.to_dict()
 
@@ -61,7 +60,6 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: RequirementsCountRequest,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Response[RequirementsCount]:
     """Count participants
 
@@ -85,7 +83,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -100,7 +98,6 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: RequirementsCountRequest,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Optional[RequirementsCount]:
     """Count participants
 
@@ -124,7 +121,7 @@ def sync(
     return sync_detailed(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -132,7 +129,6 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: RequirementsCountRequest,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Response[RequirementsCount]:
     """Count participants
 
@@ -156,7 +152,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -169,7 +165,6 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: RequirementsCountRequest,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Optional[RequirementsCount]:
     """Count participants
 
@@ -194,6 +189,6 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             json_body=json_body,
-            authorization=authorization,
+            
         )
     ).parsed

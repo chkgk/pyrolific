@@ -13,14 +13,14 @@ def _get_kwargs(
     project_id: str,
     *,
     client: Client,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/projects/{project_id}/studies/".format(client.base_url, project_id=project_id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     return {
         "method": "get",
@@ -56,7 +56,7 @@ def sync_detailed(
     project_id: str,
     *,
     client: Client,
-    authorization: str,
+    
 ) -> Response[StudiesListResponse]:
     """List all studies in a project
 
@@ -64,7 +64,7 @@ def sync_detailed(
 
     Args:
         project_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -77,7 +77,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         project_id=project_id,
         client=client,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -92,7 +92,7 @@ def sync(
     project_id: str,
     *,
     client: Client,
-    authorization: str,
+    
 ) -> Optional[StudiesListResponse]:
     """List all studies in a project
 
@@ -100,7 +100,7 @@ def sync(
 
     Args:
         project_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -113,7 +113,7 @@ def sync(
     return sync_detailed(
         project_id=project_id,
         client=client,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -121,7 +121,7 @@ async def asyncio_detailed(
     project_id: str,
     *,
     client: Client,
-    authorization: str,
+    
 ) -> Response[StudiesListResponse]:
     """List all studies in a project
 
@@ -129,7 +129,7 @@ async def asyncio_detailed(
 
     Args:
         project_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -142,7 +142,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         project_id=project_id,
         client=client,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -155,7 +155,7 @@ async def asyncio(
     project_id: str,
     *,
     client: Client,
-    authorization: str,
+    
 ) -> Optional[StudiesListResponse]:
     """List all studies in a project
 
@@ -163,7 +163,7 @@ async def asyncio(
 
     Args:
         project_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -177,6 +177,6 @@ async def asyncio(
         await asyncio_detailed(
             project_id=project_id,
             client=client,
-            authorization=authorization,
+            
         )
     ).parsed

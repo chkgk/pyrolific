@@ -14,14 +14,14 @@ def _get_kwargs(
     *,
     client: Client,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/hooks/subscriptions/{subscription_id}/".format(client.base_url, subscription_id=subscription_id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     json_json_body = json_body.to_dict()
 
@@ -61,7 +61,7 @@ def sync_detailed(
     *,
     client: Client,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Response[SubscriptionDetail]:
     """Confirm a subscription
 
@@ -69,7 +69,7 @@ def sync_detailed(
 
     Args:
         subscription_id (str):
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -84,7 +84,7 @@ def sync_detailed(
         subscription_id=subscription_id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -100,7 +100,7 @@ def sync(
     *,
     client: Client,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Optional[SubscriptionDetail]:
     """Confirm a subscription
 
@@ -108,7 +108,7 @@ def sync(
 
     Args:
         subscription_id (str):
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -123,7 +123,7 @@ def sync(
         subscription_id=subscription_id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -132,7 +132,7 @@ async def asyncio_detailed(
     *,
     client: Client,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Response[SubscriptionDetail]:
     """Confirm a subscription
 
@@ -140,7 +140,7 @@ async def asyncio_detailed(
 
     Args:
         subscription_id (str):
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -155,7 +155,7 @@ async def asyncio_detailed(
         subscription_id=subscription_id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -169,7 +169,7 @@ async def asyncio(
     *,
     client: Client,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Optional[SubscriptionDetail]:
     """Confirm a subscription
 
@@ -177,7 +177,7 @@ async def asyncio(
 
     Args:
         subscription_id (str):
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -193,6 +193,6 @@ async def asyncio(
             subscription_id=subscription_id,
             client=client,
             json_body=json_body,
-            authorization=authorization,
+            
         )
     ).parsed

@@ -14,14 +14,12 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBonusPaymentsJsonBody,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/submissions/bonus-payments/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
-
-    headers["Authorization"] = authorization
 
     json_json_body = json_body.to_dict()
 
@@ -60,7 +58,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBonusPaymentsJsonBody,
-    authorization: str,
+    
 ) -> Response[BulkBonus]:
     r"""Set up bonuses
 
@@ -81,7 +79,7 @@ def sync_detailed(
     If not, you will get a \"400\" HTTP response back, which explains which IDs are incorrect.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBonusPaymentsJsonBody):  Example: {'study_id':
             '60f6acb180a7b59ac0621f9e', 'csv_bonuses':
             '60ffe5c8371090c7041d43f8,4.25\n60ff44a1d00991f1dfe405d9,4.25'}.
@@ -97,7 +95,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -112,7 +110,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBonusPaymentsJsonBody,
-    authorization: str,
+    
 ) -> Optional[BulkBonus]:
     r"""Set up bonuses
 
@@ -133,7 +131,7 @@ def sync(
     If not, you will get a \"400\" HTTP response back, which explains which IDs are incorrect.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBonusPaymentsJsonBody):  Example: {'study_id':
             '60f6acb180a7b59ac0621f9e', 'csv_bonuses':
             '60ffe5c8371090c7041d43f8,4.25\n60ff44a1d00991f1dfe405d9,4.25'}.
@@ -149,7 +147,7 @@ def sync(
     return sync_detailed(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -157,7 +155,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBonusPaymentsJsonBody,
-    authorization: str,
+    
 ) -> Response[BulkBonus]:
     r"""Set up bonuses
 
@@ -178,7 +176,7 @@ async def asyncio_detailed(
     If not, you will get a \"400\" HTTP response back, which explains which IDs are incorrect.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBonusPaymentsJsonBody):  Example: {'study_id':
             '60f6acb180a7b59ac0621f9e', 'csv_bonuses':
             '60ffe5c8371090c7041d43f8,4.25\n60ff44a1d00991f1dfe405d9,4.25'}.
@@ -194,7 +192,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -207,7 +205,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBonusPaymentsJsonBody,
-    authorization: str,
+    
 ) -> Optional[BulkBonus]:
     r"""Set up bonuses
 
@@ -228,7 +226,7 @@ async def asyncio(
     If not, you will get a \"400\" HTTP response back, which explains which IDs are incorrect.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBonusPaymentsJsonBody):  Example: {'study_id':
             '60f6acb180a7b59ac0621f9e', 'csv_bonuses':
             '60ffe5c8371090c7041d43f8,4.25\n60ff44a1d00991f1dfe405d9,4.25'}.
@@ -245,6 +243,6 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             json_body=json_body,
-            authorization=authorization,
+            
         )
     ).parsed

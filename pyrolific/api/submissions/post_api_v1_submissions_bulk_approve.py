@@ -13,14 +13,14 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBulkApproveJsonBody,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/submissions/bulk-approve/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     json_json_body = json_body.to_dict()
 
@@ -58,7 +58,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBulkApproveJsonBody,
-    authorization: str,
+    
 ) -> Response[str]:
     """Bulk approve submissions
 
@@ -67,7 +67,7 @@ def sync_detailed(
     IDs you want to approve and the study id.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBulkApproveJsonBody):
 
     Raises:
@@ -81,7 +81,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -96,7 +96,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBulkApproveJsonBody,
-    authorization: str,
+    
 ) -> Optional[str]:
     """Bulk approve submissions
 
@@ -105,7 +105,7 @@ def sync(
     IDs you want to approve and the study id.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBulkApproveJsonBody):
 
     Raises:
@@ -119,7 +119,7 @@ def sync(
     return sync_detailed(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -127,7 +127,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBulkApproveJsonBody,
-    authorization: str,
+    
 ) -> Response[str]:
     """Bulk approve submissions
 
@@ -136,7 +136,7 @@ async def asyncio_detailed(
     IDs you want to approve and the study id.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBulkApproveJsonBody):
 
     Raises:
@@ -150,7 +150,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -163,7 +163,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: PostApiV1SubmissionsBulkApproveJsonBody,
-    authorization: str,
+    
 ) -> Optional[str]:
     """Bulk approve submissions
 
@@ -172,7 +172,7 @@ async def asyncio(
     IDs you want to approve and the study id.
 
     Args:
-        authorization (str):
+        
         json_body (PostApiV1SubmissionsBulkApproveJsonBody):
 
     Raises:
@@ -187,6 +187,6 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             json_body=json_body,
-            authorization=authorization,
+            
         )
     ).parsed

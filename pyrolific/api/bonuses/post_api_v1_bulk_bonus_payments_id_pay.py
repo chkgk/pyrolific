@@ -12,14 +12,11 @@ def _get_kwargs(
     id: str,
     *,
     client: AuthenticatedClient,
-    authorization: str,
 ) -> Dict[str, Any]:
     url = "{}/api/v1/bulk-bonus-payments/{id}/pay/".format(client.base_url, id=id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
-
-    headers["Authorization"] = authorization
 
     return {
         "method": "post",
@@ -54,7 +51,6 @@ def sync_detailed(
     id: str,
     *,
     client: AuthenticatedClient,
-    authorization: str,
 ) -> Response[str]:
     """Pay bonuses
 
@@ -63,7 +59,6 @@ def sync_detailed(
 
     Args:
         id (str):
-        authorization (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -76,7 +71,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         id=id,
         client=client,
-        authorization=authorization,
     )
 
     response = httpx.request(
@@ -91,7 +85,6 @@ def sync(
     id: str,
     *,
     client: AuthenticatedClient,
-    authorization: str,
 ) -> Optional[str]:
     """Pay bonuses
 
@@ -100,7 +93,6 @@ def sync(
 
     Args:
         id (str):
-        authorization (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -113,7 +105,6 @@ def sync(
     return sync_detailed(
         id=id,
         client=client,
-        authorization=authorization,
     ).parsed
 
 
@@ -121,7 +112,7 @@ async def asyncio_detailed(
     id: str,
     *,
     client: AuthenticatedClient,
-    authorization: str,
+    
 ) -> Response[str]:
     """Pay bonuses
 
@@ -130,7 +121,7 @@ async def asyncio_detailed(
 
     Args:
         id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -143,7 +134,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         id=id,
         client=client,
-        authorization=authorization,
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -156,7 +146,6 @@ async def asyncio(
     id: str,
     *,
     client: AuthenticatedClient,
-    authorization: str,
 ) -> Optional[str]:
     """Pay bonuses
 
@@ -165,7 +154,6 @@ async def asyncio(
 
     Args:
         id (str):
-        authorization (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -179,6 +167,5 @@ async def asyncio(
         await asyncio_detailed(
             id=id,
             client=client,
-            authorization=authorization,
         )
     ).parsed

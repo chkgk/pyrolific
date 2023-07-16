@@ -14,14 +14,14 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/hooks/subscriptions/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     json_json_body = json_body.to_dict()
 
@@ -60,7 +60,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Response[SubscriptionList]:
     """Create a subscription
 
@@ -70,7 +70,7 @@ def sync_detailed(
     Before creating a subscription, you must ensure that you have created a secret for your workspace.
 
     Args:
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -84,7 +84,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -99,7 +99,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Optional[SubscriptionList]:
     """Create a subscription
 
@@ -109,7 +109,7 @@ def sync(
     Before creating a subscription, you must ensure that you have created a secret for your workspace.
 
     Args:
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -123,7 +123,7 @@ def sync(
     return sync_detailed(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -131,7 +131,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Response[SubscriptionList]:
     """Create a subscription
 
@@ -141,7 +141,7 @@ async def asyncio_detailed(
     Before creating a subscription, you must ensure that you have created a secret for your workspace.
 
     Args:
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -155,7 +155,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         client=client,
         json_body=json_body,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -168,7 +168,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: SubscriptionDetail,
-    authorization: str,
+    
 ) -> Optional[SubscriptionList]:
     """Create a subscription
 
@@ -178,7 +178,7 @@ async def asyncio(
     Before creating a subscription, you must ensure that you have created a secret for your workspace.
 
     Args:
-        authorization (str):
+        
         json_body (SubscriptionDetail):
 
     Raises:
@@ -193,6 +193,6 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             json_body=json_body,
-            authorization=authorization,
+            
         )
     ).parsed

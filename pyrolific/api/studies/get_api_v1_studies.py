@@ -14,14 +14,11 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     state: Union[Unset, None, GetApiV1StudiesState] = UNSET,
-    authorization: str,
 ) -> Dict[str, Any]:
     url = "{}/api/v1/studies/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
-
-    headers["Authorization"] = authorization
 
     params: Dict[str, Any] = {}
     json_state: Union[Unset, None, str] = UNSET
@@ -67,7 +64,6 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     state: Union[Unset, None, GetApiV1StudiesState] = UNSET,
-    authorization: str,
 ) -> Response[StudiesListResponse]:
     """List all studies
 
@@ -75,7 +71,6 @@ def sync_detailed(
 
     Args:
         state (Union[Unset, None, GetApiV1StudiesState]):
-        authorization (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -88,7 +83,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         client=client,
         state=state,
-        authorization=authorization,
     )
 
     response = httpx.request(
@@ -103,7 +97,6 @@ def sync(
     *,
     client: AuthenticatedClient,
     state: Union[Unset, None, GetApiV1StudiesState] = UNSET,
-    authorization: str,
 ) -> Optional[StudiesListResponse]:
     """List all studies
 
@@ -111,7 +104,6 @@ def sync(
 
     Args:
         state (Union[Unset, None, GetApiV1StudiesState]):
-        authorization (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -124,7 +116,6 @@ def sync(
     return sync_detailed(
         client=client,
         state=state,
-        authorization=authorization,
     ).parsed
 
 
@@ -132,7 +123,6 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     state: Union[Unset, None, GetApiV1StudiesState] = UNSET,
-    authorization: str,
 ) -> Response[StudiesListResponse]:
     """List all studies
 
@@ -140,7 +130,6 @@ async def asyncio_detailed(
 
     Args:
         state (Union[Unset, None, GetApiV1StudiesState]):
-        authorization (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -153,7 +142,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         client=client,
         state=state,
-        authorization=authorization,
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -166,7 +154,6 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     state: Union[Unset, None, GetApiV1StudiesState] = UNSET,
-    authorization: str,
 ) -> Optional[StudiesListResponse]:
     """List all studies
 
@@ -174,7 +161,6 @@ async def asyncio(
 
     Args:
         state (Union[Unset, None, GetApiV1StudiesState]):
-        authorization (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -188,6 +174,5 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             state=state,
-            authorization=authorization,
         )
     ).parsed

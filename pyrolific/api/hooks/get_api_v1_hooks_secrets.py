@@ -13,14 +13,14 @@ def _get_kwargs(
     *,
     client: Client,
     workspace_id: str,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/hooks/secrets/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     params: Dict[str, Any] = {}
     params["workspace_id"] = workspace_id
@@ -62,7 +62,7 @@ def sync_detailed(
     *,
     client: Client,
     workspace_id: str,
-    authorization: str,
+    
 ) -> Response[SecretList]:
     """List all secrets
 
@@ -70,7 +70,7 @@ def sync_detailed(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -83,7 +83,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         client=client,
         workspace_id=workspace_id,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -98,7 +98,7 @@ def sync(
     *,
     client: Client,
     workspace_id: str,
-    authorization: str,
+    
 ) -> Optional[SecretList]:
     """List all secrets
 
@@ -106,7 +106,7 @@ def sync(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -119,7 +119,7 @@ def sync(
     return sync_detailed(
         client=client,
         workspace_id=workspace_id,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -127,7 +127,7 @@ async def asyncio_detailed(
     *,
     client: Client,
     workspace_id: str,
-    authorization: str,
+    
 ) -> Response[SecretList]:
     """List all secrets
 
@@ -135,7 +135,7 @@ async def asyncio_detailed(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -148,7 +148,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         client=client,
         workspace_id=workspace_id,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -161,7 +161,7 @@ async def asyncio(
     *,
     client: Client,
     workspace_id: str,
-    authorization: str,
+    
 ) -> Optional[SecretList]:
     """List all secrets
 
@@ -169,7 +169,7 @@ async def asyncio(
 
     Args:
         workspace_id (str):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -183,6 +183,6 @@ async def asyncio(
         await asyncio_detailed(
             client=client,
             workspace_id=workspace_id,
-            authorization=authorization,
+            
         )
     ).parsed

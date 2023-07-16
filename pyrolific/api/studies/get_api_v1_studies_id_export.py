@@ -15,14 +15,14 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     method: Union[Unset, None, GetApiV1StudiesIdExportMethod] = UNSET,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/studies/{id}/export/".format(client.base_url, id=id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     params: Dict[str, Any] = {}
     json_method: Union[Unset, None, str] = UNSET
@@ -69,7 +69,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     method: Union[Unset, None, GetApiV1StudiesIdExportMethod] = UNSET,
-    authorization: str,
+    
 ) -> Response[GetApiV1StudiesIdExportResponse200]:
     """Download demographic data
 
@@ -114,7 +114,7 @@ def sync_detailed(
     Args:
         id (str):
         method (Union[Unset, None, GetApiV1StudiesIdExportMethod]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -128,7 +128,7 @@ def sync_detailed(
         id=id,
         client=client,
         method=method,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -144,7 +144,7 @@ def sync(
     *,
     client: AuthenticatedClient,
     method: Union[Unset, None, GetApiV1StudiesIdExportMethod] = UNSET,
-    authorization: str,
+    
 ) -> Optional[GetApiV1StudiesIdExportResponse200]:
     """Download demographic data
 
@@ -189,7 +189,7 @@ def sync(
     Args:
         id (str):
         method (Union[Unset, None, GetApiV1StudiesIdExportMethod]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -203,7 +203,7 @@ def sync(
         id=id,
         client=client,
         method=method,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -212,7 +212,7 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     method: Union[Unset, None, GetApiV1StudiesIdExportMethod] = UNSET,
-    authorization: str,
+    
 ) -> Response[GetApiV1StudiesIdExportResponse200]:
     """Download demographic data
 
@@ -257,7 +257,7 @@ async def asyncio_detailed(
     Args:
         id (str):
         method (Union[Unset, None, GetApiV1StudiesIdExportMethod]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -271,7 +271,7 @@ async def asyncio_detailed(
         id=id,
         client=client,
         method=method,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -285,7 +285,7 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     method: Union[Unset, None, GetApiV1StudiesIdExportMethod] = UNSET,
-    authorization: str,
+    
 ) -> Optional[GetApiV1StudiesIdExportResponse200]:
     """Download demographic data
 
@@ -330,7 +330,7 @@ async def asyncio(
     Args:
         id (str):
         method (Union[Unset, None, GetApiV1StudiesIdExportMethod]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -345,6 +345,6 @@ async def asyncio(
             id=id,
             client=client,
             method=method,
-            authorization=authorization,
+            
         )
     ).parsed

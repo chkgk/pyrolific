@@ -14,14 +14,11 @@ def _get_kwargs(
     *,
     client: AuthenticatedClient,
     json_body: Study,
-    authorization: str,
 ) -> Dict[str, Any]:
     url = "{}/api/v1/studies/{id}/".format(client.base_url, id=id)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
-
-    headers["Authorization"] = authorization
 
     json_json_body = json_body.to_dict()
 
@@ -61,7 +58,7 @@ def sync_detailed(
     *,
     client: AuthenticatedClient,
     json_body: Study,
-    authorization: str,
+    
 ) -> Response[Study]:
     """Update a study
 
@@ -75,7 +72,6 @@ def sync_detailed(
 
     Args:
         id (str):
-        authorization (str):
         json_body (Study):  Example: {'id': '60d9aadeb86739de712faee0', 'name': "Study about
             API's", 'internal_name': "WIT-2021 Study about API's version 2", 'description': 'This
             study aims to determine how to make a good public API', 'external_study_url':
@@ -100,7 +96,6 @@ def sync_detailed(
         id=id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
     )
 
     response = httpx.request(
@@ -116,7 +111,6 @@ def sync(
     *,
     client: AuthenticatedClient,
     json_body: Study,
-    authorization: str,
 ) -> Optional[Study]:
     """Update a study
 
@@ -130,7 +124,6 @@ def sync(
 
     Args:
         id (str):
-        authorization (str):
         json_body (Study):  Example: {'id': '60d9aadeb86739de712faee0', 'name': "Study about
             API's", 'internal_name': "WIT-2021 Study about API's version 2", 'description': 'This
             study aims to determine how to make a good public API', 'external_study_url':
@@ -155,7 +148,6 @@ def sync(
         id=id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
     ).parsed
 
 
@@ -164,7 +156,6 @@ async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
     json_body: Study,
-    authorization: str,
 ) -> Response[Study]:
     """Update a study
 
@@ -178,7 +169,7 @@ async def asyncio_detailed(
 
     Args:
         id (str):
-        authorization (str):
+        
         json_body (Study):  Example: {'id': '60d9aadeb86739de712faee0', 'name': "Study about
             API's", 'internal_name': "WIT-2021 Study about API's version 2", 'description': 'This
             study aims to determine how to make a good public API', 'external_study_url':
@@ -203,7 +194,6 @@ async def asyncio_detailed(
         id=id,
         client=client,
         json_body=json_body,
-        authorization=authorization,
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -217,7 +207,6 @@ async def asyncio(
     *,
     client: AuthenticatedClient,
     json_body: Study,
-    authorization: str,
 ) -> Optional[Study]:
     """Update a study
 
@@ -231,7 +220,6 @@ async def asyncio(
 
     Args:
         id (str):
-        authorization (str):
         json_body (Study):  Example: {'id': '60d9aadeb86739de712faee0', 'name': "Study about
             API's", 'internal_name': "WIT-2021 Study about API's version 2", 'description': 'This
             study aims to determine how to make a good public API', 'external_study_url':
@@ -257,6 +245,5 @@ async def asyncio(
             id=id,
             client=client,
             json_body=json_body,
-            authorization=authorization,
         )
     ).parsed

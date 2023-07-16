@@ -17,7 +17,7 @@ def _get_kwargs(
     limit: Union[Unset, None, int] = 100,
     status: Union[Unset, None, str] = UNSET,
     resource_id: Union[Unset, None, str] = UNSET,
-    authorization: str,
+    
 ) -> Dict[str, Any]:
     url = "{}/api/v1/hooks/subscriptions/{subscription_id}/events/".format(
         client.base_url, subscription_id=subscription_id
@@ -26,7 +26,7 @@ def _get_kwargs(
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    headers["Authorization"] = authorization
+    
 
     params: Dict[str, Any] = {}
     params["offset"] = offset
@@ -78,7 +78,7 @@ def sync_detailed(
     limit: Union[Unset, None, int] = 100,
     status: Union[Unset, None, str] = UNSET,
     resource_id: Union[Unset, None, str] = UNSET,
-    authorization: str,
+    
 ) -> Response[SubscriptionEventList]:
     """Get subscription events
 
@@ -90,7 +90,7 @@ def sync_detailed(
         limit (Union[Unset, None, int]):  Default: 100.
         status (Union[Unset, None, str]):
         resource_id (Union[Unset, None, str]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -107,7 +107,7 @@ def sync_detailed(
         limit=limit,
         status=status,
         resource_id=resource_id,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -126,7 +126,7 @@ def sync(
     limit: Union[Unset, None, int] = 100,
     status: Union[Unset, None, str] = UNSET,
     resource_id: Union[Unset, None, str] = UNSET,
-    authorization: str,
+    
 ) -> Optional[SubscriptionEventList]:
     """Get subscription events
 
@@ -138,7 +138,7 @@ def sync(
         limit (Union[Unset, None, int]):  Default: 100.
         status (Union[Unset, None, str]):
         resource_id (Union[Unset, None, str]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -155,7 +155,7 @@ def sync(
         limit=limit,
         status=status,
         resource_id=resource_id,
-        authorization=authorization,
+        
     ).parsed
 
 
@@ -167,7 +167,7 @@ async def asyncio_detailed(
     limit: Union[Unset, None, int] = 100,
     status: Union[Unset, None, str] = UNSET,
     resource_id: Union[Unset, None, str] = UNSET,
-    authorization: str,
+    
 ) -> Response[SubscriptionEventList]:
     """Get subscription events
 
@@ -179,7 +179,7 @@ async def asyncio_detailed(
         limit (Union[Unset, None, int]):  Default: 100.
         status (Union[Unset, None, str]):
         resource_id (Union[Unset, None, str]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -196,7 +196,7 @@ async def asyncio_detailed(
         limit=limit,
         status=status,
         resource_id=resource_id,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -213,7 +213,7 @@ async def asyncio(
     limit: Union[Unset, None, int] = 100,
     status: Union[Unset, None, str] = UNSET,
     resource_id: Union[Unset, None, str] = UNSET,
-    authorization: str,
+    
 ) -> Optional[SubscriptionEventList]:
     """Get subscription events
 
@@ -225,7 +225,7 @@ async def asyncio(
         limit (Union[Unset, None, int]):  Default: 100.
         status (Union[Unset, None, str]):
         resource_id (Union[Unset, None, str]):
-        authorization (str):
+        
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -243,6 +243,6 @@ async def asyncio(
             limit=limit,
             status=status,
             resource_id=resource_id,
-            authorization=authorization,
+            
         )
     ).parsed

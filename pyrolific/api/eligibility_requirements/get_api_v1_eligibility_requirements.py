@@ -12,15 +12,13 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     client: AuthenticatedClient,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
     url = "{}/api/v1/eligibility-requirements/".format(client.base_url)
 
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    if not isinstance(authorization, Unset):
-        headers["Authorization"] = authorization
+        
 
     return {
         "method": "get",
@@ -55,7 +53,6 @@ def _build_response(*, client: Client, response: httpx.Response) -> Response[Req
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Response[RequirementsResponse]:
     """Get list of all requirements.
 
@@ -75,7 +72,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         client=client,
-        authorization=authorization,
+        
     )
 
     response = httpx.request(
@@ -89,7 +86,6 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Optional[RequirementsResponse]:
     """Get list of all requirements.
 
@@ -109,14 +105,13 @@ def sync(
 
     return sync_detailed(
         client=client,
-        authorization=authorization,
+        
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Response[RequirementsResponse]:
     """Get list of all requirements.
 
@@ -136,7 +131,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         client=client,
-        authorization=authorization,
+        
     )
 
     async with httpx.AsyncClient(verify=client.verify_ssl) as _client:
@@ -148,7 +143,6 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    authorization: Union[Unset, str] = UNSET,
 ) -> Optional[RequirementsResponse]:
     """Get list of all requirements.
 
@@ -169,6 +163,6 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
-            authorization=authorization,
+            
         )
     ).parsed

@@ -57,7 +57,7 @@ class AuthenticatedClient(Client):
     """A Client which has been authenticated for use on secured endpoints"""
 
     token: str
-    prefix: str = "Bearer"
+    prefix: str = "Token"
     auth_header_name: str = "Authorization"
 
     def get_headers(self) -> Dict[str, str]:
