@@ -8,6 +8,7 @@ class StudyStatus(str, Enum):
     PAUSED = "PAUSED"
     SCHEDULED = "SCHEDULED"
     UNPUBLISHED = "UNPUBLISHED"
+    PUBLISHING = "PUBLISHING"  # not in docs
 
     def __str__(self) -> str:
         return str(self.value)
